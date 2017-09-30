@@ -31,6 +31,7 @@ class GamesController < ApplicationController
       end
       break if answer
     end
+
     p '*' * 100
     p ii
     p jj
@@ -79,17 +80,17 @@ class GamesController < ApplicationController
     col_index += 1
     if row_index.odd?
       return [row_index - 1, col_index] if cells[row_index - 1].try(:[],col_index) == 0
-      return [row_index + 1, col_index] if cells[row_index + 1].try(:[],col_index) == 0
+      return [row_index + 1, col_index - 1] if cells[row_index + 1].try(:[],col_index - 1) == 0
       return [row_index, col_index - 1] if cells[row_index].try(:[],col_index - 1) == 0
       return [row_index, col_index + 1] if cells[row_index].try(:[],col_index + 1) == 0
       return [row_index - 1, col_index - 1] if cells[row_index - 1].try(:[],col_index - 1) == 0
-      return [row_index - 1, col_index + 1] if cells[row_index - 1].try(:[],col_index + 1) == 0
+      return [row_index + 1, col_index] if cells[row_index + 1].try(:[],col_index) == 0
     else
       return [row_index - 1 ,col_index] if cells[row_index - 1].try(:[],col_index) == 0
-      return [row_index + 1 ,col_index] if cells[row_index + 1].try(:[],col_index) == 0
+      return [row_index - 1 ,col_index + 1] if cells[row_index - 1].try(:[],col_index + 1) == 0
       return [row_index ,col_index - 1] if cells[row_index].try(:[],col_index - 1) == 0
       return [row_index ,col_index + 1] if cells[row_index].try(:[],col_index + 1) == 0
-      return [row_index + 1 ,col_index - 1] if cells[row_index + 1].try(:[],col_index - 1) == 0
+      return [row_index + 1 ,col_index] if cells[row_index + 1].try(:[],col_index) == 0
       return [row_index + 1 ,col_index + 1] if cells[row_index + 1].try(:[],col_index + 1) == 0
     end
   end
